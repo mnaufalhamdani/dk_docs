@@ -1,0 +1,75 @@
+{
+  "unique_id": "a1b2c3d4",
+  "repo": "dk-apps",
+  "jenis": "usulan_perubahan",
+  "perubahan": "CR2605060003",
+  "hash_terakhir_diaudit": null,
+  "selisih_dokumentasi": ["Dokumentasi lama menyebut validasi tanggal ganda tidak ada, kode sebenarnya menolak driver+tanggal yang sama."],
+  "teknologi": [
+    { "nama": "Node.js", "versi": "22", "sumber_file": ".nvmrc" },
+    { "nama": "Next.js", "versi": "16", "sumber_file": "package.json" }
+  ],
+  "modul": [
+    {
+      "id_modul": "transport",
+      "aksi": "ubah",
+      "nama": "Transport",
+      "path_kode": "src/modules/transport",
+      "ringkasan": "Pengelolaan data transport harian, bulanan, dan khusus.",
+      "bergantung_pada": [],
+      "menu": [
+        {
+          "id_menu": "transport-daily",
+          "aksi": "ubah",
+          "nama": "Transport Daily",
+          "pola": "crud",
+          "route": "/transport/daily",
+          "path_kode": "src/modules/transport/daily",
+          "ringkasan": "Kelola data transport harian.",
+          "bergantung_pada": [
+            { "nama": "Master Driver", "route": "/master/driver", "keterangan": "Pilihan driver diambil dari Master Driver." }
+          ],
+          "halaman": [
+            {
+              "id_halaman": "form",
+              "aksi": "ubah",
+              "jenis": "form",
+              "nama": "Form",
+              "route": "/transport/daily/form",
+              "file_utama": ["src/modules/transport/daily/form.js"],
+              "bagian": {
+                "validasi": {
+                  "tambah": ["Nomor polisi wajib diisi dan maksimal 10 karakter."],
+                  "ubah": [
+                    {
+                      "dari": "Satu driver hanya boleh punya satu data per tanggal.",
+                      "menjadi": "Kombinasi driver dan tanggal harus unik, jika bentrok simpan ditolak dengan pesan."
+                    }
+                  ],
+                  "hapus": []
+                },
+                "alur": {
+                  "tambah": ["Setelah simpan, daftar dimuat ulang dengan filter yang sama."]
+                }
+              },
+              "bergantung_pada": []
+            },
+            {
+              "id_halaman": "riwayat",
+              "aksi": "baru",
+              "jenis": "lainnya",
+              "nama": "Riwayat Perubahan",
+              "route": "/transport/daily/riwayat",
+              "file_utama": ["src/modules/transport/daily/riwayat.js"],
+              "bagian": {
+                "tujuan": { "tambah": ["Menampilkan histori perubahan satu data transport harian."] },
+                "komponen_ui": { "tambah": ["Tabel waktu, user, dan field yang berubah."] }
+              },
+              "bergantung_pada": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

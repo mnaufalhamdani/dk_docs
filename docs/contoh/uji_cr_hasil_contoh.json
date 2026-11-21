@@ -1,0 +1,61 @@
+{
+  "unique_id": "GANTI_8_KARAKTER",
+  "repo": "GANTI_KODE_REPO",
+  "cr_id": "GANTI_CR_ID",
+  "putaran": 1,
+  "branch": "development",
+  "hash_head": "abc1234def5678",
+  "tools_belum_tersedia": [
+    { "nama": "Playwright", "dibutuhkan_untuk": "uji UI web", "saran_pemasangan": "npm i -D @playwright/test" }
+  ],
+  "lingkungan": {
+    "versi_tools": ["node 20.11"],
+    "perintah": ["npx playwright test"],
+    "keterbatasan": ["emulator tidak tersedia"]
+  },
+  "analisis_perubahan": [
+    { "kategori": "matches", "poin": 1, "ringkasan": "Perubahan sesuai poin 1", "file": ["src/modules/contoh/form.js"] },
+    { "kategori": "outside", "poin": null, "ringkasan": "Refactor util yang tidak ada di blueprint", "file": ["src/utils/format.js"] }
+  ],
+  "skenario": [
+    {
+      "kode": "S-1-01",
+      "poin": 1,
+      "nama": "Simpan berhasil saat semua kolom terisi",
+      "tipe": "planned",
+      "jenis": "positive",
+      "langkah": ["Buka form", "Isi semua kolom", "Klik simpan"],
+      "hasil_diharapkan": "Data tersimpan dan muncul di daftar",
+      "hasil_aktual": "Data tersimpan dan muncul di daftar",
+      "status": "PASS",
+      "catatan": "",
+      "bukti": ["S-1-01.png"]
+    },
+    {
+      "kode": "S-1-02",
+      "poin": 1,
+      "nama": "Kolom wajib kosong ditolak",
+      "tipe": "planned",
+      "jenis": "negative",
+      "langkah": ["Buka form", "Kosongkan kolom wajib", "Klik simpan"],
+      "hasil_diharapkan": "Muncul pesan wajib diisi",
+      "hasil_aktual": "Form tersimpan tanpa pesan",
+      "status": "FAIL",
+      "catatan": "Validasi belum dipasang",
+      "bukti": ["S-1-02.log"]
+    },
+    {
+      "kode": "S-X-01",
+      "poin": null,
+      "nama": "Menu lain tetap dapat dibuka",
+      "tipe": "unplanned",
+      "jenis": "regression",
+      "langkah": "Buka menu lain",
+      "hasil_diharapkan": "Menu terbuka",
+      "hasil_aktual": "Tidak dijalankan",
+      "status": "NOT_EXECUTED",
+      "catatan": "Emulator tidak tersedia",
+      "bukti": []
+    }
+  ]
+}

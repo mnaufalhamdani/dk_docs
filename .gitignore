@@ -1,0 +1,14 @@
+node_modules/
+.next/
+.env
+.env.local
+uploads/*
+!uploads/.gitkeep
+*.tsbuildinfo
+next-env.d.ts
+# cadangan JSON dari scripts/db-migrasi-id.mjs (berisi data asli)
+/backup/
+
+# Kiro IDE & VS Code (konfigurasi lokal, tidak perlu di-share lewat git)
+.kiro/
+.vscode/
